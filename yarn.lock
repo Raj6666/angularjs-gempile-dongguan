@@ -86,9 +86,9 @@ angular-ui-router@^0.4.2:
   version "1.5.11"
   resolved "http://registry.npm.taobao.org/angular/download/angular-1.5.11.tgz#8c5ba7386f15965c9acf3429f6881553aada30d6"
 
-angular@^1.0.8, angular@^1.6.2:
-  version "1.6.4"
-  resolved "http://registry.npm.taobao.org/angular/download/angular-1.6.4.tgz#03b7b15c01a0802d7e2cf593240e604054dc77fb"
+angular@^1.0.8, angular@^1.7.9:
+  version "1.7.9"
+  resolved "https://registry.npm.taobao.org/angular/download/angular-1.7.9.tgz#e52616e8701c17724c3c238cfe4f9446fd570bc4"
 
 ansi-cyan@^0.1.1:
   version "0.1.1"
