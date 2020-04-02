@@ -1,0 +1,113 @@
+<div class="content" id="dialingAnalysisModule">
+    <div>
+        <i class="fa fa-map-marker"></i>
+        <span>用户分析>拨号分析</span>
+    </div>
+    <div class="dialing-indicator-query-panel">
+        <div class="head">
+            <div class="title">
+                <div class="text"><span>新建查询</span></div>
+                <div class="right-triangle"></div>
+            </div>
+        </div>
+        <div id="query-panel-body" class="collapse show query-panel-body">
+            <div class="query-main-panel container">
+                <div class="row">
+                    <div class="query-item-panel col-lg-4">
+                        <span>地市&nbsp;&thinsp;：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <div ng-dropdown-multiselect
+                             options="queryTool.city.options"
+                             selected-model="queryTool.city.model"
+                             extra-settings="queryTool.city.setting"
+                             translation-texts="queryTool.selectorText"
+                             events="queryTool.city.events">
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <span>用户类型&nbsp;&thinsp;：</span>
+                        <div ng-dropdown-multiselect
+                             options="queryTool.userType.options"
+                             selected-model="queryTool.userType.model"
+                             extra-settings="queryTool.userType.setting"
+                             translation-texts="queryTool.selectorText"
+                             events="queryTool.userType.events">
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <span>区县<span class="red-star">*</span>：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <div ng-dropdown-multiselect
+                             options="queryTool.area.options"
+                             selected-model="queryTool.area.model"
+                             extra-settings="queryTool.area.setting"
+                             translation-texts="queryTool.selectorText"
+                             is-warning="queryTool.area.IsWarning"
+                             events="queryTool.area.events">
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <span>镇区&nbsp;&thinsp;：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <div ng-dropdown-multiselect
+                             options="queryTool.community.options"
+                             selected-model="queryTool.community.model"
+                             extra-settings="queryTool.community.setting"
+                             translation-texts="queryTool.selectorText"
+                             events="queryTool.community.events">
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <span class="span-font-weight">账号搜索&nbsp;&thinsp;：</span>
+                        <div class="searchInput select-width-140" style="position: relative">
+                            <label>
+                                <input ng-model="queryTool.accountNumber" ng-keyup="accountNumberKeyUp($event)"
+                                       placeholder="请输入"/>
+                                <i ng-click="getAccountNumberInfo()" class="fa fa-lg fa-search"></i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <span>时间粒度&nbsp;&thinsp;：</span>
+                        <div ng-dropdown-multiselect
+                             options="queryTool.interval.options"
+                             selected-model="queryTool.interval.model"
+                             extra-settings="queryTool.interval.setting"
+                             translation-texts="queryTool.selectorText"
+                             events="queryTool.interval.events">
+                        </div>
+                    </div>
+                    <div class="query-time-panel col-lg-8">
+                        <span>时间选择<span class="red-star">*</span>：</span>
+                        <laydate capsule="upDateDate(timeSlots,isWarning)" interval="interval" time-slots="timeSlots"
+                                 is-warning="isWarning"></laydate>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <button type="button" class="btn btn-small btn-primary"
+                                ng-click="searchData()">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            <span>查询</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <button class="btn btn-info btn-sm collapse-btn flex-center" type="button" ng-click="togglePanel()">
+                <i ng-show="!showSearchPanel" class="fa fa-lg fa-sort-desc down"></i>
+                <i ng-show="showSearchPanel" class="fa fa-lg fa-sort-asc up"></i>
+            </button>
+        </div>
+    </div>
+    <div class="dialing-analysis-display-panel">
+        <div class="show-chart-group">
+            <div id="dialingAnalysisChart" class="chart-show-panel"></div>
+        </div>
+        <div class="show-grid-group">
+            <div ui-grid="DIAGridOption" class="grid-class"
+                 ui-grid-pinning
+                 ui-grid-pagination
+                 ui-grid-exporter
+                 ui-grid-auto-resize
+                 ui-grid-resize-columns>
+            </div>
+        </div>
+    </div>
+</div>

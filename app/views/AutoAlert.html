@@ -1,0 +1,351 @@
+<div class="content" id="autoAlertModule">
+    <div>
+        <i class="fa fa-map-marker"></i>
+        <span>监控告警>主动告警</span>
+    </div>
+
+    <!-- 主模块 -->
+    <div style="background: white">
+        <!--告警规则管理-->
+        <div class="query-panel">
+            <div class="head">
+                <div class="title">
+                    <span class="text">告警规则管理</span>
+                    <span class="right-triangle"></span>
+                </div>
+                <div>
+                    <button class="btn btn-outline-info export-button add-rule-icon"
+                            ng-click="toAddAutoAlertRule()">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        <span>新增规则</span>
+                    </button>
+                </div>
+            </div>
+            <div id="ruleTotal" class="collapse">
+                <div id="rule-panel">
+                    <div id="auto_alert_rules" ui-grid="ruleGridOptions"
+                         ui-grid-pinning
+                         ui-grid-pagination
+                         ui-grid-exporter
+                         ui-grid-auto-resize
+                         ui-grid-resize-columns>
+                    </div>
+                    <div class="alert-time">
+                        <boot-page id="rules"></boot-page>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <button class="btn btn-info btn-sm collapse-btn flex-center" type="button"
+                        data-toggle="collapse" data-target="#ruleTotal" ng-click="togglePanel()">
+                    <i ng-show="showSearchPanel" class="fa fa-lg fa-sort-desc down"></i>
+                    <i ng-show="!showSearchPanel" class="fa fa-lg fa-sort-asc up"></i>
+                </button>
+            </div>
+        </div>
+
+        <!--告警记录-->
+        <div class="alert-record-tabs">
+            <div class="alert-records">
+                <div class="alert-records-container">
+                    <div class="button-border first-button">
+                        <select class="form-control Ncreate_divselect Wwidth86" style="height: 35px;"
+                                ng-model="selectAlertValue"
+                                ng-change="dropdownSelectAlert()"
+                                ng-options="choice.name for choice in alertQueryType">
+                        </select>
+                    </div>
+                    <div class="alert-and-frequency">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active onclick-color-{{allColor}}" data-toggle="tab"
+                                   ng-click="selectCurTab(1)"
+                                   role="tab"><span>全网告警</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link onclick-color-{{areaColor}}" data-toggle="tab" ng-click="selectCurTab(0)"
+                                   role="tab"><span>设备告警</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link onclick-color-{{appColor}}" data-toggle="tab" ng-click="selectCurTab(2)"
+                                   role="tab"><span>业务告警</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link onclick-color-{{elementsColor}}" data-toggle="tab"
+                                   ng-click="selectCurTab(3)"
+                                   role="tab"><span>ICP告警</span></a>
+                            </li>
+                        </ul>
+                        <div class="nav-icon">
+                            <span class="low-level-icon"></span>
+                            <span class="low-level-count">{{commonAlertCount}}</span>
+                            <span class="middle-level-icon"></span>
+                            <span class="middle-level-count">{{majorAlertCount}}</span>
+                            <span class="high-level-icon"></span>
+                            <span class="high-level-count">{{emergencyAlertCount}}</span>
+                        </div>
+                    </div>
+                    <div class="button-border" ng-class="selectAlertValue.value=='activeAlert'?'disabled-color':''">
+                        <div  class="laydate-container" style="margin-top: -1px;width:365px">
+                            <span>时间选择<span class="red-star">*</span>：</span>
+                            <laydate capsule="upDateDate(timeSlots,isWarning)" interval="autoAlertInterval"
+                                     time-slots="timeSlots" is-warning="isWarning"></laydate>
+                        </div>
+                        <button type="button" class="btn clickable btn-primary search-btn"
+                                ng-click="searchData()">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            <span>查询</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-record card">
+                <div id="auto_alert_statistics" ui-grid="statisticsGridOptions" class="statistics-grid"
+                     ui-grid-pinning
+                     ui-grid-pagination
+                     ui-grid-exporter
+                     ui-grid-auto-resize
+                     ui-grid-resize-columns>
+                </div>
+                <boot-page id="records"></boot-page>
+            </div>
+        </div>
+    </div>
+
+    <!--（新）添加，编辑部件-->
+    <button id="ruleDetailButton" style="display: none" data-toggle="modal" data-target="#myModal">ruleDetaileButton</button>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1">
+        <div class="modal-dialog rule-detail-view">
+            <div class="modal-content">
+                <div class="modal-header title">
+                    <p class="XTC_title" id="addRulePopupTitle" style="display: none;">添加告警规则</p>
+                    <p class="XTC_title" id="editRulePopupTitle" style="display: none;">编辑告警规则</p>>
+                    <button type="button" id="ruleDetailClose" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times" style="float:right;"></i>
+                    </button>
+                </div>
+                <div class="modal-body ruleSettingDetails">
+                    <!--下拉框-->
+                    <div class="query-main-panel container Ncreate_div2">
+                        <div class="row">
+                            <div class="query-item-panel col-lg-6">
+                                <span>维度:</span>
+                                <div ng-dropdown-multiselect
+                                     options="queryTool.dimensions.options"
+                                     selected-model="queryTool.dimensions.model"
+                                     extra-settings="queryTool.dimensions.setting"
+                                     translation-texts="queryTool.selectorText"
+                                     events="queryTool.dimensions.events">
+                                </div>
+                            </div>
+                            <div class="query-item-panel col-lg-6">
+                                <span>对象：</span>
+                                <div ng-dropdown-multiselect
+                                     options="queryTool.objectTypes.options"
+                                     selected-model="queryTool.objectTypes.model"
+                                     extra-settings="queryTool.objectTypes.setting"
+                                     translation-texts="queryTool.selectorText"
+                                     events="queryTool.objectTypes.events">
+                                </div>
+                            </div>
+                            <div class="query-item-panel col-lg-6">
+                                <span>具体对象<span class="red-star">*</span>：</span>
+                                <div ng-dropdown-multiselect
+                                     options="queryTool.objects.options"
+                                     selected-model="queryTool.objects.model"
+                                     extra-settings="queryTool.objects.setting"
+                                     translation-texts="queryTool.selectorText"
+                                     search-options="queryTool.objects.searchOptions"
+                                     is-warning="queryTool.objects.IsWarning"
+                                     events="queryTool.objects.events">
+                                </div>
+                            </div>
+                            <div class="query-item-panel col-lg-6">
+                                <span class="span-font-weight">指标<span class="red-star">*</span>：</span>
+                                <div ng-dropdown-multiselect
+                                     options="queryTool.indicators.options"
+                                     selected-model="queryTool.indicators.model"
+                                     extra-settings="queryTool.indicators.setting"
+                                     translation-texts="queryTool.selectorText"
+                                     is-warning="queryTool.indicators.IsWarning"
+                                     events="queryTool.indicators.events">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--告警级别-->
+                    <div class="Ncreate_div Ncreate_div2 MmarginL28">
+                        <div style="width:auto;margin:auto;">
+                            <div class="Nddiv2 Wwidth435 MmarginR0">
+                                <span>告警级别设置</span>
+                                <!--<span ng-show="selectedIndicator.unit">( 单位: {{selectedIndicator.unit}})</span>:-->
+                            </div>
+                            <!--一般为level1、operator1，重点为level2、operator2，紧急为level3、operator3，对应的英文部分要改-->
+                            <div class="Nddiv2 height30 Wwidth435 MmarginR0 MmarginT5 all-nowarp">
+                                <span>一般告警：</span>
+                                <select class="Ncreate_divselect Wwidth60 PpaddingL10 Hheight21 MmarginLeft10"
+                                        id="operator1" ng-model="operator1" value="{{operator1}}"
+                                        ng-change="inputAlertKeyup()">
+                                    <option value=""></option>
+                                    <option value=">"> ></option>
+                                    <option value=">="> >=</option>
+                                    <option value="<"> <</option>
+                                    <option value="<="> <=</option>
+                                </select>
+                                <input class=" Ttypetext Ncreate_divinput  Wwidth140 MmarginL5"
+                                       style="display: inherit;width:130px !important;"
+                                       type="number"
+                                       ng-value="((level1FirstThreshold>100||level1FirstThreshold<=0)&&(selectedIndicator.unit=='%'))?'':level1FirstThreshold"
+                                       ng-disabled="!operator1"
+                                       ng-model="level1FirstThreshold"
+                                       placeholder="请输入整数">
+                                <span class="DdisplayIB color_settings Ppadding0 FfloatR Mmargin0 Bborder0">
+                                                <ins
+                                                    class="low-level-icon"
+                                                    style="width:17px;height:24px;margin-bottom: -5px; no-repeat: center;background-size: auto 18px;text-align: center;font-size: 12px;color: #fff!important;">&nbsp</ins>
+                                            </span>
+                                <div class="Wwidth100 PpaddingL10 Hheight21">
+                                                <span>
+                                                    (单位：{{selectedIndicator.unit}})
+                                                </span>
+                                </div>
+                            </div>
+                            <div class="Nddiv2 height30 Wwidth435 MmarginR0 MmarginT15 all-nowarp">
+                                <span>重要告警：</span>
+                                <select class="Ncreate_divselect Wwidth60 PpaddingL10 Hheight21 MmarginLeft10"
+                                        id="operator2" ng-model="operator2" value="{{operator2}}"
+                                        ng-change="inputAlertKeyup()">
+                                    <option value=""></option>
+                                    <option value=">"> ></option>
+                                    <option value=">="> >=</option>
+                                    <option value="<"> <</option>
+                                    <option value="<="> <=</option>
+                                </select>
+                                <input class=" Ttypetext Ncreate_divinput  Wwidth140 MmarginL5"
+                                       style="display: inherit;width:130px !important;"
+                                       type="number"
+                                       ng-value="((level2FirstThreshold>100||level2FirstThreshold<=0)&&(selectedIndicator.unit=='%'))?'':level2FirstThreshold"
+                                       ng-disabled=!operator2;
+                                       ng-model="level2FirstThreshold"
+                                       placeholder="请输入整数">
+                                <span class="DdisplayIB color_settings Ppadding0 FfloatR Mmargin0 Bborder0">
+                                                <ins
+                                                    class="middle-level-icon"
+                                                    style="width:17px;height:24px;margin-bottom: -5px; no-repeat: center;background-size: auto 18px;text-align: center;font-size: 12px;color: #fff!important;">&nbsp</ins>
+                                            </span>
+                                <div class="Wwidth100 PpaddingL10 Hheight21">
+                                                <span>
+                                                    (单位：{{selectedIndicator.unit}})
+                                                </span>
+                                </div>
+                            </div>
+                            <div class="Nddiv2 height30 Wwidth435 MmarginR0 MmarginT15 all-nowarp">
+                                <span>紧急告警：</span>
+                                <select class="Ncreate_divselect Wwidth60 PpaddingL10 Hheight21 MmarginLeft10"
+                                        id="operator3" ng-model="operator3" value="{{operator3}}"
+                                        ng-change="inputAlertKeyup()">
+                                    <option value=""></option>
+                                    <option value=">"> ></option>
+                                    <option value=">="> >=</option>
+                                    <option value="<"> <</option>
+                                    <option value="<="> <=</option>
+                                </select>
+                                <input class=" Ttypetext Ncreate_divinput Wwidth140 MmarginL5"
+                                       style="display: inherit;width:130px !important;"
+                                       type="number"
+                                       ng-value="((level3FirstThreshold>100||level3FirstThreshold<=0)&&(selectedIndicator.unit=='%'))?'':level3FirstThreshold"
+                                       ng-disabled=!operator3;
+                                       ng-model="level3FirstThreshold"
+                                       placeholder="请输入整数">
+                                <span class="DdisplayIB color_settings Ppadding0 FfloatR Mmargin0 Bborder0">
+                                                <ins
+                                                    class="high-level-icon"
+                                                    style="width:17px;height:24px;margin-bottom: -5px; no-repeat: center;background-size: auto 18px;text-align: center;font-size: 12px;color: #fff!important;">&nbsp</ins>
+                                            </span>
+                                <div class="Wwidth100 PpaddingL10 Hheight21">
+                                                <span>
+                                                    (单位：{{selectedIndicator.unit}})
+                                                </span>
+                                </div>
+                            </div>
+                            <div class="Nddiv2 Wwidth435 MmarginR0 MmarginT15">
+                                <span>时间粒度：</span>
+                                <select class="Ncreate_divselect Wwidth60 PpaddingL10 Hheight21"
+                                        id="interval" style="width: 100px!important;margin-left: 20px;"
+                                        ng-model="interval" value="{{interval}}">
+                                    <option value="5" ng-if="isSelectInverve">5分钟</option>
+                                    <option value="60" selected>1小时</option>
+                                </select>
+                            </div>
+                            <div class="Nddiv2 Wwidth435 MmarginR0 MmarginT5">
+                                <span>规则名称：</span>
+                                <input type="text" value="{{ruleNames}}" id="ruleNames"
+                                       class="add-alert-panel-rule-name-input" ng-model="ruleNames">
+                            </div>
+                        </div>
+                        <p class="Cclearb"></p>
+                    </div>
+                    <div class="PpaddingT10 actionButtons">
+                        <input type="button" class="monitoring_input action FfloatR" value="添加"
+                               id="addRuleButton" style="display: none;" ng-click="doAddAutoAlertRule()">
+                        <input type="button" class="monitoring_input action FfloatR" value="保存"
+                               id="editRuleButton" style="display: none;" ng-click="doEditAutoAlertRule()">
+                        <input type="button" class="monitoring_input cancle FfloatR" value="取消"
+                               id="cancelEditButton" ng-click="cancelEdit()">
+                        <p class="Cclearb"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 告警规则详情 -->
+    <div class="popup_window" style="display: none" id="details">
+        <div class="TC monitoring_tc">
+            <span class="Nnclose" style="width: 25px;top:5px;">
+                <img src="../assets/images/autoAlert/sc_icon.png" alt="" style="width: 25px;">
+            </span>
+            <p class="XTC_title">告警规则详情</p>
+            <div class="recordupdate_main Ppadding10t" style="width:auto;">
+                <p class="Llineheight25 Ppadding10">告警规则表达式：</p>
+                <p class="Ttextalign PpaddingB20 gzxq"></p>
+            </div>
+            <div class="recordupdate_main Ppadding10t" style="width:auto;">
+                <p class="Llineheight25 Ppadding10">维度：</p>
+                <p class="Ttextalign PpaddingB20 dim_b"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 告警规则详情(只有表达式) -->
+    <div class="TC monitoring_tc" style="display: none;width: 200px;left:40%;" id="details2">
+            <span class="Nnclose" style="width: 25px;top:5px;">
+                <img src="../assets/images/autoAlert/sc_icon.png" alt="" style="width: 25px;">
+            </span>
+        <p class="XTC_title">告警规则详情</p>
+        <div class="recordupdate_main Ppadding10t" style="width:auto;">
+            <p class="Llineheight25 Ppadding10">告警规则表达式：</p>
+            <p class="Ttextalign PpaddingB20 gzxq2"></p>
+        </div>
+    </div>
+
+    <!-- 指标趋势图 -->
+    <div class="modal fade" id="indicatorValueTrend">
+        <div class="modal-dialog indicator-trend-view">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="indicator-title" ng-bind="IndicatorTrendTitle"></span>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="indicatorValueTrendChart" class="indicator-trend-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="shade" style="display: none"></div>
+</div>

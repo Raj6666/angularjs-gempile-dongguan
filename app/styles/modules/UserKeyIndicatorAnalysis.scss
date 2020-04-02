@@ -1,0 +1,172 @@
+#userKeyIndicatorAnalysis {
+    min-width: 1005px;
+    .multi-select-width {
+        width: 140px;
+    }
+    .user-key-indicator-query-panel {
+        background-color: white;
+        padding-top: 15px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        .head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 30px;
+            border-bottom: 2px solid $BLUE_POSITIVE;
+            padding: 0 15px 0 0;
+            .title {
+                display: flex;
+                align-items: center;
+                height: 30px;
+                .text {
+                    display: flex;
+                    align-items: center;
+                    height: 30px;
+                    color: white;
+                    padding: 0 20px;
+                    background-color: $BLUE_POSITIVE;
+                }
+                .right-triangle {
+                    width: 30px;
+                    height: 30px;
+                    display: inline-block;
+                    background: url("../../assets/images/common/right_triangle.png") no-repeat right center;
+                    background-size: auto 30px;
+                }
+            }
+        }
+        .query-panel-body {
+            .container{
+                padding:10px 15px 0px 28px;
+            }
+            .row{
+                margin: 10px 0px;
+            }
+            .query-main-panel {
+                padding-top: 10px;
+                margin: 0 10px;
+                font-family: "Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+                .query-time-panel {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    padding:0px 0px 10px 0px;
+                    span {
+                        font-weight: bold;
+                    }
+                }
+                .query-item-panel {
+                    display: flex;
+                    padding:0px 0px 10px 0px;
+                    align-items: center;
+                    span {
+                        font-weight: bold;
+                    }
+                }
+            }
+            .button-panel {
+                display: flex;
+                padding: 10px 0 5px 0;
+                button:focus {
+                    box-shadow: none;
+                }
+            }
+            .search-input {
+                position: relative;
+                input {
+                    display: inline-block;
+                    text-align: left;
+                    vertical-align: middle;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    height: 34px;
+                    width: 140px;
+                    padding-right: 21px;
+                    padding-left: 5px;
+                }
+                i {
+                    position: absolute;
+                    right: 5px;
+                    top: 10px;
+                    color: #cccccc;
+                    cursor: pointer;
+                }
+            }
+        }
+        @media screen and (min-width: 1200px) {
+            .col-lg-3,.col-lg-4 {
+                max-width: 20%;
+            }
+            .col-lg-6,.col-lg-8 {
+                max-width:40%;
+            }
+            .container {
+                width: 100%;
+            }
+        }
+        @media screen and (max-width: 1005px){
+            .container{
+                width: 950px;
+                padding:10px 15px 0px 70px !important;
+            }
+            .col-lg-4 {
+                max-width: 280px;
+            }
+            .col-lg-8 {
+                max-width: 580px;
+            }
+        }
+        @media screen and (max-width: 1024px) and (min-width: 1005px){
+            .container {
+                padding:10px 15px 0px 70px !important;
+            }
+        }
+        .footer {
+            display: flex;
+            justify-content: center;
+            border-top: 2px solid $BLUE_POSITIVE;
+            .collapse-btn {
+                width: 120px;
+                height: 11px;
+                padding: .1rem .5rem;
+                background-color: $BLUE_POSITIVE;
+                border-color: $BLUE_POSITIVE;
+                border-radius: 0 0 2px 2px;
+                i {
+                    position: relative;
+                    font-size: 1.7em;
+                }
+                .up {
+                    top: -0.1rem;
+                }
+                .down {
+                    top: -0.75rem;
+                }
+            }
+        }
+    }
+    .user-key-indicator-display-panel {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        padding-top: 2px;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        .grid-title {
+            padding-left: 15px;
+            font-size: 18px;
+        }
+        .nav-title {
+            width: 98%;
+            margin: 0 10px;
+        }
+        .grid-class {
+            width: 98%;
+            height: 380px;
+            margin: 10px;
+        }
+    }
+}

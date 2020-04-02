@@ -1,0 +1,98 @@
+<div
+    class="ui-grid-pager-panel"
+    ui-grid-pager
+    ng-show="grid.options.enablePaginationControls">
+    <div
+        role="navigation"
+        class="ui-grid-pager-container">
+        <div
+            class="tablePager">
+            <span>每页行数&nbsp:&nbsp&nbsp</span>
+            <div
+                class="ui-grid-pager-row-count-picker"
+                ng-if="grid.options.paginationPageSizes.length > 1 && !grid.options.useCustomPagination">
+                <select
+                    ui-grid-one-bind-aria-labelledby-grid="'items-per-page-label'"
+                    ng-model="grid.options.paginationPageSize"
+                    ng-options="o as o for o in grid.options.paginationPageSizes">
+                </select>
+                <i class="fa fa-angle-down angleDown" aria-hidden="true"></i>
+                <!--<span-->
+                    <!--ui-grid-one-bind-id-grid="'items-per-page-label'"-->
+                    <!--class="ui-grid-pager-row-count-label">-->
+                    <!--&nbsp;{{sizesLabel}}-->
+                <!--</span>-->
+            </div>
+            <button
+                id="pageToFir"
+                type="button"
+                class="btn btn-outline-info"
+                ui-grid-one-bind-title="aria.pageToFirst"
+                ui-grid-one-bind-aria-label="aria.pageToFirst"
+                ng-click="pageFirstPageClick()"
+                ng-disabled="cantPageBackward()">
+                <span><<</span>
+            </button>
+            <button
+                id="pageToPre"
+                type="button"
+                class="btn btn-outline-info"
+                ui-grid-one-bind-title="aria.pageBack"
+                ui-grid-one-bind-aria-label="aria.pageBack"
+                ng-click="pagePreviousPageClick()"
+                ng-disabled="cantPageBackward()">
+                <span><</span>
+            </button>
+            <div class="inputPage">
+                <input
+                    type="tel"
+                    ui-grid-one-bind-title="aria.pageSelected"
+                    ui-grid-one-bind-aria-label="aria.pageSelected"
+                    class="ui-grid-pager-control-input"
+                    ng-model="grid.options.paginationCurrentPage"
+                    min="1"
+                    max="{{ paginationApi.getTotalPages() }}"
+                    required/>
+                <i class="fa fa-unsorted"></i>
+                <span class="plus" ng-click="pageNextPageClick()"></span>
+                <span class="minus" ng-click="pagePreviousPageClick()"></span>
+                <span
+                    class="ui-grid-pager-max-pages-number"
+                    ng-show="paginationApi.getTotalPages() > 0">
+                    <!--<abbr-->
+                        <!--ui-grid-one-bind-title="paginationOf">-->
+                      <!--/-->
+                    <!--</abbr>-->
+                    /
+                    {{ paginationApi.getTotalPages() }}
+                </span>
+            </div>
+            <button
+                id="pageToNex"
+                type="button"
+                class="btn btn-outline-info"
+                ui-grid-one-bind-title="aria.pageForward"
+                ui-grid-one-bind-aria-label="aria.pageForward"
+                ng-click="pageNextPageClick()"
+                ng-disabled="cantPageForward()">
+                <span>></span>
+            </button>
+            <button
+                id="pageToLas"
+                type="button"
+                class="btn btn-outline-info"
+                ui-grid-one-bind-title="aria.pageToLast"
+                ui-grid-one-bind-aria-label="aria.pageToLast"
+                ng-click="pageLastPageClick()"
+                ng-disabled="cantPageToLast()">
+                <span>>></span>
+            </button>
+            <!--<button class="btn btn-small btn-primary" ng-click="grid.api.exporter.csvExport('all', 'all')">导出</button>-->
+        </div>
+        <span
+            ng-if="grid.options.paginationPageSizes.length <= 1"
+            class="ui-grid-pager-row-count-label">
+      {{grid.options.paginationPageSize}}&nbsp;{{sizesLabel}}
+    </span>
+    </div>
+</div>

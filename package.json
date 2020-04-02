@@ -1,0 +1,61 @@
+{
+    "name": "gempile-gemstack-web",
+    "version": "0.4.8",
+    "description": "Gempile FE web project",
+    "main": "app/index.html",
+    "private": false,
+    "scripts": {
+        "start": "gulp dev",
+        "build": "gulp build",
+        "run-dg": "gulp run-DG",
+        "build-dg": "gulp build-DG",
+        "build-DGDEV": "gulp build-DGDEV",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": {
+        "name": "husiyuan",
+        "email": "husiyuan@richstonedt.com",
+        "url": "http://192.168.6.126/gemstack-core/gemstack-core-fe/repository/archive.zip?ref=0.4.8-20180725"
+    },
+    "devDependencies": {
+        "angular": "^1.6.2",
+        "angular-ui-bootstrap": "^2.5.0",
+        "angular-ui-grid": "^4.0.3",
+        "angular-ui-router": "^0.4.2",
+        "babel-core": "^6.23.1",
+        "babel-loader": "^6.3.2",
+        "babel-preset-es2015": "^6.22.0",
+        "css-loader": "^0.27.3",
+        "del": "^2.2.2",
+        "echarts": "^3.4.0",
+        "file-loader": "^0.10.1",
+        "flatpickr": "^2.4.7",
+        "font-awesome": "^4.7.0",
+        "fs-extra": "^2.1.2",
+        "gulp": "^3.9.1",
+        "gulp-babel": "^6.1.2",
+        "gulp-shell": "^0.6.3",
+        "gulp-watch": "^4.3.11",
+        "gulp-zip": "^4.1.0",
+        "highcharts": "^5.0.12",
+        "html-loader": "^0.4.5",
+        "jwt-simple": "^0.5.1",
+        "node-sass": "^4.5.2",
+        "progressbar.js": "^1.0.1",
+        "resolve-url-loader": "^2.0.2",
+        "run-sequence": "^1.2.2",
+        "sass-loader": "^6.0.3",
+        "style-loader": "^0.13.2",
+        "sweetalert2": "^6.4.4",
+        "url-loader": "^0.5.8",
+        "webpack": "^2.4.1",
+        "whatwg-fetch": "^2.0.3"
+    },
+    "dependencies": {
+        "ng-infinite-scroll": "^1.3.0",
+        "webpack-dev-server": "^2.7.1"
+    },
+    "publishConfig": {
+        "registry": "http://192.168.6.96:8083/repository/npm-repo-hosted/"
+    }
+}

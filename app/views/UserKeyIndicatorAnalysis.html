@@ -1,0 +1,162 @@
+<div class="content" id="userKeyIndicatorAnalysis">
+    <div><i class="fa fa-map-marker"></i><span>用户分析>用户指标分析</span></div>
+    <div class="user-key-indicator-query-panel">
+        <div class="head">
+            <div class="title">
+                <div class="text"><span>新建查询</span></div>
+                <div class="right-triangle"></div>
+            </div>
+        </div>
+        <div id="queryPanelBody" class="collapse query-panel-body show">
+            <div class="query-main-panel container">
+                <div class="row">
+                    <div class="query-item-panel col-lg-4">
+                        <span>业务&nbsp;&thinsp;：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <div ng-dropdown-multiselect
+                             options="userTypeOptions"
+                             selected-model="userType"
+                             translation-texts="selectorText"
+                             extra-settings="userTypeSetting"
+                             events="userTypeEvents">
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <span>帐号搜索<span class="red-star">*</span>：</span>
+                        <div class="search-input">
+                            <input ng-model="account" id="account" placeholder=" 请输入"
+                                   ng-keyup="onAccountKeyUp($event)" ng-change="onAccountChange()"/>
+                            <i ng-click="checkAccount()" class="fa fa-lg fa-search"></i>
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <span>业务大类&nbsp;&thinsp;：</span>
+                        <div ng-dropdown-multiselect
+                             selected-model="applicationType"
+                             options="applicationTypeOptions"
+                             events="applicationTypeEvents"
+                             extra-settings="applicationTypeSetting"
+                             translation-texts="selectorText">
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <span class="span-font-weight">业务小类&nbsp;&thinsp;：</span>
+                        <div id="applications" ng-dropdown-multiselect
+                             selected-model="application"
+                             options="applicationOptions"
+                             extra-settings="applicationSetting"
+                             translation-texts="selectorText"
+                             search-options="applicationSearchOptions"
+                             events="applicationEvents">
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <span class="span-font-weight">指标<span class="red-star">*</span>：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <div ng-dropdown-multiselect
+                             selected-model="indicator"
+                             options="indicatorOptions"
+                             extra-settings="indicatorSetting"
+                             translation-texts="selectorText"
+                             is-warning="indicatorIsWarning">
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <span>时间粒度&nbsp;&thinsp;：</span>
+                        <div ng-dropdown-multiselect
+                             options="intervalOptions"
+                             selected-model="interval"
+                             translation-texts="selectorText"
+                             extra-settings="intervalSetting"
+                             events="intervalEvents">
+                        </div>
+                    </div>
+                    <div class="query-time-panel col-lg-8">
+                        <span>时间选择<span class="red-star">*</span>：</span>
+                        <laydate capsule="upDateDate(timeSlots,isWarning)"
+                                 interval="dateInterval"
+                                 time-slots="timeSlots"
+                                 is-warning="isWarning"></laydate>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <button type="button" class="btn btn-small btn-primary" ng-click="doSearch()">
+                            <i class="fa fa-check"></i>
+                            <span>查询</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <button class="btn btn-info btn-sm collapse-btn flex-center" type="button" ng-click="togglePanel()">
+                <i ng-show="!showSearchPanel" class="fa fa-lg fa-sort-desc down"></i>
+                <i ng-show="showSearchPanel" class="fa fa-lg fa-sort-asc up"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="user-key-indicator-display-panel">
+        <div class="grid-title">用户关键指标</div>
+        <div id="userKeyIndicatorStatisticDiv">
+            <div ui-grid="userKeyIndicatorStatisticGrid" class="grid-class"
+                 ui-grid-pinning
+                 ui-grid-pagination
+                 ui-grid-exporter
+                 ui-grid-auto-resize
+                 ui-grid-resize-columns>
+            </div>
+        </div>
+
+        <ul class="nav nav-tabs nav-title">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" data-target="#standardXdrRetrievalDiv">通用话单数据</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" data-target="#httpXdrRetrievalDiv">HTTP话单数据</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" data-target="#dnsXdrRetrievalDiv">DNS话单数据</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" data-target="#radiusXdrRetrievalDiv">Radius话单数据</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="standardXdrRetrievalDiv">
+                <div ui-grid="standardXdrRetrievalGrid" class="grid-class"
+                     ui-grid-pinning
+                     ui-grid-pagination
+                     ui-grid-exporter
+                     ui-grid-auto-resize
+                     ui-grid-resize-columns>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="httpXdrRetrievalDiv">
+                <div ui-grid="httpXdrRetrievalGrid" class="grid-class"
+                     ui-grid-pinning
+                     ui-grid-pagination
+                     ui-grid-exporter
+                     ui-grid-auto-resize
+                     ui-grid-resize-columns>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="dnsXdrRetrievalDiv">
+                <div ui-grid="dnsXdrRetrievalGrid" class="grid-class"
+                     ui-grid-pinning
+                     ui-grid-pagination
+                     ui-grid-exporter
+                     ui-grid-auto-resize
+                     ui-grid-resize-columns>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="radiusXdrRetrievalDiv">
+                <div ui-grid="radiusXdrRetrievalGrid" class="grid-class"
+                     ui-grid-pinning
+                     ui-grid-pagination
+                     ui-grid-exporter
+                     ui-grid-auto-resize
+                     ui-grid-resize-columns>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

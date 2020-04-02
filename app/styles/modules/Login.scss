@@ -1,0 +1,71 @@
+#login {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    .header {
+        display: flex;
+        align-items: center;
+        height: 85px;
+        width: 80%;
+        padding-left: 30px;
+        .header-title-left {
+            width: 230px;
+        }
+        .header-title-right {
+            font-size: 25px;
+            font-family: '微软雅黑', serif;
+            //color: #003DFF;
+            color: #4D93FE;
+            font-weight: bold;
+            margin-top: 14px;
+            margin-left: 10px;
+        }
+    }
+    .content {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 480px;
+        // height: 60%;
+        width: 100%;
+        background: url(../../assets/images/login/background.png) no-repeat 30% 65%;
+        background-size: cover;
+        filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../assets/images/login/background.png', sizingMethod='scale');
+        .login-box {
+            position: relative;
+            right: 60%;
+            margin-top: -5%;
+            border: 1px silver solid;
+            border-radius: 4px;
+            width: 400px;
+            height: 300px;
+            padding: 20px;
+            background: #fff;
+            .title,
+            .message {
+                margin-bottom: 15px;
+                h4 {
+                    font-family: '微软雅黑', serif;
+                }
+            }
+
+            .input-group {
+                margin-bottom: 20px;
+                height: 50px;
+                span {
+                    width: 50px;
+                }
+            }
+
+        }
+    }
+    .footer {
+        height: 5%;
+    }
+    .login-btn {
+        font-size: 1.3rem;
+    }
+}

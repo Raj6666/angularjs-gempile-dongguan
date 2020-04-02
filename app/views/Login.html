@@ -1,0 +1,40 @@
+<div id="login" ng-keyup="$event.keyCode === 13 && gar_login()">
+    <div class="header">
+        <img class="header-title-left" src="../assets/images/login/header.png" />
+        <p class="header-title-right">Gempile东莞移动核心网大数据生态圈系统</p>
+    </div>
+    <div class="content">
+        <div></div>
+        <div class="login-box">
+            <div class="title" align="center">
+                <h4>登录</h4>
+            </div>
+            <!--<div ng-show="message.valid" class="message text-danger" align = "center">
+                <i class="fa fa-times" aria-hidden="true"></i> {{message.text}}
+            </div>-->
+            <div ng-if="error" class="message text-danger" align = "center">
+                <h4 style="margin-bottom:0;"><i class="fa fa-exclamation-triangle"></i> {{errorMsg}}</h4>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user-o fa-lg" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" autofocus aria-describedby="user_addon" placeholder="用户名" ng-model="username">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                <input type="password" class="form-control" aria-describedby="password_addon" placeholder="密码" ng-model="password" >
+            </div>
+            <!--<div class="input-group">-->
+                <!--<input class="form-control" style="width: 200px" ng-model="captcha" placeholder="验证码">&nbsp;&nbsp;&nbsp;-->
+                <!--<img alt="如果看不清楚，请单击图片刷新！" class="pointer" ng-src="{{src}}" ng-click="refreshCode()">&nbsp;&nbsp;&nbsp;-->
+                <!--<a style="margin-top: 16px" ng-click="refreshCode()">点击刷新</a>-->
+            <!--</div>-->
+            <button ng-click="gar_login()" type="button" class="btn btn-primary btn-block" style="height:50px" >
+                <span ng-show="isLogging"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i></span>
+                <span ng-hide="isLogging" class="login-btn">登录</span>
+            </button>
+        </div>
+    </div>
+    <div class="footer flex-center">
+        2017©广州丰石科技有限公司
+    </div>
+</div>

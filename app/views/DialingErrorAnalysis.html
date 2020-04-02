@@ -1,0 +1,131 @@
+<div class="content" id="dialingErrorAnalysisModule">
+    <div><i class="fa fa-map-marker"></i><span>用户分析>拨号故障分析</span></div>
+    <div class="device-indicator-query-panel">
+        <div class="head">
+            <div class="title">
+                <div class="text"><span>新建查询</span></div>
+                <div class="right-triangle"></div>
+            </div>
+        </div>
+        <div id="query-panel-body" class="collapse query-panel-body show">
+            <div class="query-main-panel container">
+                <div class="row">
+                    <div class="query-item-panel col-lg-4">
+                        <span>地市&nbsp;&thinsp;：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <div ng-dropdown-multiselect
+                             options="cityOptions"
+                             selected-model="cityModel"
+                             extra-settings="citySetting"
+                             translation-texts="selectorText"
+                             events="cityEvents"
+                        >
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <span>类型&nbsp;&thinsp;：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <div ng-dropdown-multiselect
+                             options="typeOptions"
+                             selected-model="typeModel"
+                             translation-texts="selectorText"
+                             extra-settings="typeSetting"
+                             events="typeEvents"
+                        >
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <span>区县<span class="red-star">*</span>：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <div id="areaDropdown"
+                             ng-dropdown-multiselect
+                             options="areaOptions"
+                             selected-model="areaModel"
+                             translation-texts="selectorText"
+                             extra-settings="areaSetting"
+                             is-warning="areaIsWarning"
+                             events="areaEvents">
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <span class="span-font-weight">镇区&nbsp;&thinsp;：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <div ng-dropdown-multiselect
+                             options="communityOptions"
+                             selected-model="communityModel"
+                             extra-settings="communitySetting"
+                             translation-texts="selectorText"
+                             events="communityEvents"
+                        >
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <span class="span-font-weight">账号搜索&nbsp;&thinsp;：</span>
+                        <div class="searchInput select-width-140" style="position: relative">
+                            <label>
+                                <input ng-model="accountNumber" ng-keyup="accountNumberKeyUp($event)"
+                                       placeholder="请输入"/>
+                                <i ng-click="getAccountNumberInfo()" class="fa fa-lg fa-search"></i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <span>时间粒度&nbsp;&thinsp;：</span>
+                        <div ng-dropdown-multiselect
+                             options="intervalOptions"
+                             selected-model="interval"
+                             translation-texts="selectorText"
+                             extra-settings="intervalSetting"
+                             events="intervalEvents">
+                        </div>
+                    </div>
+                    <div class="query-time-panel col-lg-8">
+                        <span>时间选择<span class="red-star">*</span>：</span>
+                        <laydate capsule="upDateDate(timeSlots,isWarning)" interval="dateInterval"
+                                 time-slots="timeSlots" is-warning="isWarning"></laydate>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <button type="button" class="btn btn-small btn-primary"
+                                ng-click="searchData()">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            <span>查询</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <button class="btn btn-info btn-sm collapse-btn flex-center" type="button" ng-click="togglePanel()">
+                <i ng-show="!showSearchPanel" class="fa fa-lg fa-sort-desc down"></i>
+                <i ng-show="showSearchPanel" class="fa fa-lg fa-sort-asc up"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="device-indicator-display-panel">
+        <div class="left-side">
+            <div id="leftPanel" class="panel-content">
+                <div id="flowPie"></div>
+            </div>
+        </div>
+        <div class="right-side">
+            <div id="rightPanel" class="panel-content">
+                <div class="tab-record">
+                    <div id="auto_data_statistics" ui-grid="FAGridOption" class="statistics-grid"
+                         ui-grid-pinning
+                         ui-grid-pagination
+                         ui-grid-exporter
+                         ui-grid-resize-columns
+                         ui-grid-auto-resize>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="device-indicator-display-panel-down">
+        <div class="middle-side">
+            <div id="middlePanel" class="panel-content">
+                <div id="errorCodeLine">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

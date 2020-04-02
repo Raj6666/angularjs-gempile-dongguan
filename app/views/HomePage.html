@@ -1,0 +1,68 @@
+<div id="homePageModule">
+    <div class="s-head" ng-bind="currentStatisticalTime"></div>
+    <div class="control-panels">
+        <div class="left-side">
+            <div id="leftPanel" class="panel-content">
+                <div class="title">
+                    <i class="fa fa-signal" aria-hidden="true"></i><span>业务大类TOP10排名</span>
+                </div>
+                <div class="" style="width: 100%;position: relative;">
+                    <div>
+                        <highcharts id="ipLenHotAppTypeChart" options="ipLenHotAppTypeChart"></highcharts>
+                    </div>
+                    <div class="unit">单位：TB
+                    </div>
+                </div>
+                <div class="title">
+                    <i class="fa fa-mobile-phone" aria-hidden="true"></i><span>TOP5业务使用率(%)</span>
+                </div>
+                <div class="" style="width: 100%;margin-top: 10px;">
+                    <div>
+                        <highcharts id="userHotAppTypeChart" options="userHotAppTypeChart"></highcharts>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="middle">
+            <div id="middlePanel" class="panel-content">
+                <div class="title">
+                    <i class="fa fa-internet-explorer" aria-hidden="true"></i><span>网络概览</span>
+                </div>
+                <p class="panel-content-title">佛山小时流量统计({{currentDayTime}})</p>
+                <div class="whole-net-bottom">
+                    <i class="fa fa-user" aria-hidden="true"></i><span>总人数：{{totalUsercount}}(万人)</span>
+                    <i class="fa fa-cloud" aria-hidden="true"></i><span>总流量：{{totalFlow}}(TB)</span>
+                </div>
+                <div style="margin-top: 10px;position: relative;">
+                    <highcharts id="wholeNetworkChart" options="wholeNetworkChart"></highcharts>
+                </div>
+                <div style="margin-top: 10px;">
+                    <jqgrid id="wholeNetworkGrid" options="wholeNetworkGrid"></jqgrid>
+                </div>
+            </div>
+        </div>
+        <div class="right-side">
+            <div id="rightPanel" class="panel-content ">
+                <div class="title">
+                    <i class="fa fa-qq" aria-hidden="true"></i><span>自有业务TOP10排名</span>
+                </div>
+                <div class="" style="width: 100%;position: relative;">
+                    <div>
+                        <highcharts id="privateSubAppRankChart" options="privateSubAppRankChart"></highcharts>
+                    </div>
+                    <div class="unit">单位：GB
+                    </div>
+                </div>
+                <div class="title">
+                    <i class="fa fa-bell" aria-hidden="true"></i><span>自有业务变化TOP10排名</span>
+                </div>
+                <div class="" style="width: 100%;margin-top: 10px;">
+                    <div>
+                        <highcharts id="privateSubAppRankChangeChart"
+                                    options="privateSubAppRankChangeChart"></highcharts>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

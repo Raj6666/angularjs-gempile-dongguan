@@ -1,0 +1,212 @@
+<div class="content" id="dataDirectCityAnalysisModule">
+    <div><i class="fa fa-map-marker"></i> <span>流向分析>地市流向</span></div>
+    <div class="device-indicator-query-panel">
+        <div class="head">
+            <div class="title">
+                <div class="text"><span>新建查询</span></div>
+                <div class="right-triangle"></div>
+            </div>
+        </div>
+        <div id="query-panel-body" class="collapse query-panel-body">
+            <div class="query-main-panel">
+                <div class="query-item-group">
+                    <div class="query-item-panel">
+                        <span>选择模板：</span>
+                        <div ng-dropdown-multiselect
+                             options="templateOptions"
+                             selected-model="template"
+                             extra-settings="templateSetting"
+                             translation-texts="selectorText">
+                        </div>
+                    </div>
+                    <div class="query-item-panel">
+                        <span>时间粒度：</span>
+                        <div ng-dropdown-multiselect
+                             options="intervalOptions"
+                             selected-model="interval"
+                             translation-texts="selectorText"
+                             extra-settings="intervalSetting">
+                        </div>
+                    </div>
+                </div>
+                <div class="query-item-group">
+                    <div class="query-item-panel">
+                        <span>省份：</span>
+                        <div ng-dropdown-multiselect
+                             options="provinceOptions"
+                             selected-model="provinceOptions"
+                             translation-texts="selectorText"
+                             extra-settings="provinceSetting"
+                             disabled="true">
+                        </div>
+                    </div>
+                    <div class="query-item-panel">
+                        <span>开始时间：</span>
+                        <div>
+                            <input class="btn btn-outline-info start-time"
+                                   placeholder="请选择开始时间"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="query-item-group">
+                    <div class="query-item-panel">
+                        <span>地市：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                        <div ng-dropdown-multiselect
+                             options="cityOptions"
+                             selected-model="citiesModel"
+                             extra-settings="citySetting"
+                             translation-texts="selectorText"
+                             events="cityEvents">
+                        </div>
+                    </div>
+                    <div class="query-item-panel">
+                        <span>结束时间：</span>
+                        <div>
+                            <input class="btn btn-outline-info end-time "
+                                   placeholder="请选择结束时间"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="query-item-group">
+                    <div class="query-item-panel">
+                        <span>业务大类</span>
+                        <div ng-dropdown-multiselect
+                             options="applicationTypeOptions"
+                             selected-model="applicationTypeModel"
+                             translation-texts="selectorText"
+                             extra-settings="applicationTypeSetting"
+                             events="applicationTypeEvents">
+                        </div>
+                    </div>
+                    <div class="query-item-panel">
+                        <span class="span-font-weight">指标：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                        <div ng-dropdown-multiselect
+                             options="indicatorOptions"
+                             selected-model="indicatorModel"
+                             extra-settings="indicatorSetting"
+                             translation-texts="selectorText"
+                             events="indicatorEvents">
+                        </div>
+                    </div>
+                </div>
+                <div class="query-item-group">
+                    <div class="query-item-panel">
+                        <span class="span-font-weight">业务小类</span>
+                        <div id="applications" ng-dropdown-multiselect
+                             options="applicationOptions"
+                             selected-model="applicationModel"
+                             extra-settings="applicationSetting"
+                             translation-texts="selectorText"
+                             events="applicationEvents"
+                        >
+                        </div>
+                    </div>
+                    <div class="query-item-panel">
+                        <button type="button" class="btn btn-small btn-primary"
+                                ng-click="searchData()">
+                            <i class="fa fa-check"></i>
+                            <span>查询</span>
+                        </button>
+                        <button type="button" class="btn btn-small btn-primary clickable"
+                                ng-click="searchData()">
+                            <i class="fa fa-check"></i>
+                            <span>保存模板</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <button class="btn btn-info btn-sm collapse-btn flex-center" type="button"
+                    data-toggle="collapse" data-target="#query-panel-body">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="device-indicator-display-panel">
+        <div class="left-side">
+            <div id="leftPanel" class="panel-content">
+                <div id="gdMap"></div>
+            </div>
+        </div>
+        <div class="right-side">
+            <div id="rightPanel" class="panel-content">
+                <div id="flowBar" style=" width: 99.5%;"></div>
+                <div class="tab-record">
+                    <div id="auto_data_statistics" ui-grid="statisticsGridOptions" class="statistics-grid"
+                         ui-grid-pinning
+                         ui-grid-pagination
+                         ui-grid-exporter
+                         ui-grid-resize-columns
+                         ui-grid-auto-resize>
+                    </div>
+                </div>
+                <div class="tablePager">
+                    <span>每行页数:</span>
+                    <div class="dropdown open">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1"
+                                data-toggle="dropdown" aria-expanded="false">
+                            10
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <a class="dropdown-item" href="#">10</a>
+                            <a class="dropdown-item" href="#">15</a>
+                            <a class="dropdown-item" href="#">20</a>
+                        </div>
+                    </div>
+                    <button id="pageToFir" class="btn btn-outline-info"><span><<</span></button>
+                    <button id="pageToPre" class="btn btn-outline-info"><span><</span></button>
+                    <input id="pageName" value="1/10"/>
+                    <button id="pageToNex" class="btn btn-outline-info"
+                            ng-click="pageTurning(1,'auto_data_statistics')"><span>></span></button>
+                    <button id="pageToLast" class="btn btn-outline-info"><span>>></span></button>
+                    <button class="btn btn-small btn-primary">导出</button>
+                </div>
+            </div>
+        </div>
+
+        <br/>
+
+        <!-- Button trigger modal -->
+        <button type="button" ng-click="openCompareDialog()" style="display: none" id="compareDialog"
+                class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Launch demo modal
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1">
+            <div class="modal-dialog indicator-detail-view">
+                <div class="modal-content">
+                    <div class="modal-header title">
+                        <span>指标趋势&nbsp:&nbsp</span>
+                        <div class="query-item-panel" style="margin-right: 15px;">
+                            <div ng-dropdown-multiselect
+                                 options="singleIndicatorOptions"
+                                 selected-model="singleIndicatorModel"
+                                 extra-settings="singleIndicatorSetting"
+                                 translation-texts="selectorText"
+                                 events="indicatorEvents">
+                            </div>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-times" style="float:right;"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <div id="samePeriodChart"
+                                 class="network-indicator-detail-chart">1
+                            </div>
+                            <div id="chainPeriodChart" style="margin-top: 15px" class="network-indicator-detail-chart">
+                                2
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

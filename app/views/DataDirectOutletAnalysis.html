@@ -1,0 +1,211 @@
+<div class="content" id="dataDirectOutletAnalysisModule">
+    <div><i class="fa fa-map-marker"></i> <span>流向分析>运营商流向</span></div>
+
+    <div class="device-indicator-query-panel">
+        <div class="head">
+            <div class="title">
+                <div class="text"><span>新建查询</span></div>
+                <div class="right-triangle"></div>
+            </div>
+        </div>
+        <div id="query-panel-body" class="collapse query-panel-body show">
+            <div class="query-main-panel container">
+                <div class="row">
+                    <div class="query-item-panel col-lg-4">
+                        <span>选择模板&nbsp;&thinsp;：</span>
+                        <div ng-dropdown-multiselect
+                             options="templateOptions"
+                             selected-model="template"
+                             extra-settings="templateSetting"
+                             translation-texts="selectorTemplateDelete"
+                             events="templateEvents"
+                        >
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <span>运营商<span class="red-star">*</span>：&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <div ng-dropdown-multiselect
+                             options="exportOptions"
+                             selected-model="exportModel"
+                             translation-texts="selectorText"
+                             extra-settings="exportSetting"
+                             is-warning="exportIsWarning"
+                        >
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <!--<span>业务大类<i class="fa fa-star" aria-hidden="true"></i>：</span>-->
+                        <span class="span-font-weight">业务大类&nbsp;&thinsp;：</span>
+                        <div ng-dropdown-multiselect
+                             options="applicationTypeOptions"
+                             selected-model="applicationTypeModel"
+                             translation-texts="selectorTemplateDelete"
+                             extra-settings="applicationTypeSetting"
+                             is-warning="applicationTypeIsWarning"
+                             events="applicationTypeEvents">
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <!--<span><i class="fa fa-star" aria-hidden="true"></i>业务小类：</span>-->
+                        <!--<span>业务小类<i class="fa fa-star" aria-hidden="true"></i>：</span>-->
+                        <span class="span-font-weight">业务小类&nbsp;&thinsp;：</span>
+                        <div ng-dropdown-multiselect
+                             options="applicationOptions"
+                             selected-model="applicationModel"
+                             extra-settings="applicationSetting"
+                             translation-texts="selectorTemplateDelete"
+                             search-options="applicationSearchOptions"
+                             is-warning="applicationIsWarning"
+                             events="applicationEvents"
+                        >
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <!--<span>指标<i class="fa fa-star" aria-hidden="true"></i>：&nbsp&nbsp</span>-->
+                        <!--<span><i class="fa fa-star" aria-hidden="true"></i>指标：&nbsp&nbsp</span>-->
+                        <span class="span-font-weight">指标<span class="red-star">*</span>：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <div ng-dropdown-multiselect
+                             options="indicatorOptions"
+                             selected-model="indicatorModel"
+                             extra-settings="indicatorSetting"
+                             translation-texts="selectorText"
+                             is-warning="indicatorIsWarning"
+                             events="indicatorEvents">
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <span>时间粒度&nbsp;&thinsp;：</span>
+                        <div ng-dropdown-multiselect
+                             options="intervalOptions"
+                             selected-model="interval"
+                             translation-texts="selectorText"
+                             extra-settings="intervalSetting"
+                             events="intervalEvents">
+                        </div>
+                    </div>
+                    <div class="query-time-panel col-lg-8">
+                        <span>时间选择<span class="red-star">*</span>：</span>
+                        <laydate capsule="upDateDate(timeSlots,isWarning)" interval="dateInterval"
+                                 time-slots="timeSlots" is-warning="isWarning"></laydate>
+                    </div>
+                    <div class="query-item-panel col-lg-4">
+                        <button type="button" class="btn btn-small btn-primary first-btn"
+                                ng-click="searchData(false)">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            <span>查询</span>
+                        </button>
+                        <button type="button" class="btn btn-small btn-primary clickable"
+                                ng-click="saveTemplate()">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            <span>{{templateText}}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <button class="btn btn-info btn-sm collapse-btn flex-center" type="button" ng-click="togglePanel()">
+                <!--<i class="fa fa-bars"></i>-->
+                <i ng-show="!showSearchPanel" class="fa fa-lg fa-sort-desc down"></i>
+                <i ng-show="showSearchPanel" class="fa fa-lg fa-sort-asc up"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="device-indicator-display-panel">
+        <div class="left-side">
+            <div id="leftPanel" class="panel-content">
+                <div id="flowPie"></div>
+            </div>
+        </div>
+        <div class="right-side">
+            <div id="rightPanel" class="panel-content">
+                <div class="chart-setting-panel">
+                    <div class="query-item-panel" style="justify-content: flex-end;">
+                        <span>指标趋势：</span>
+                        <div id="barIndicatorInput" ng-dropdown-multiselect
+                             options="indicatorSelectedOptions"
+                             selected-model="indicatorSelectedModel"
+                             extra-settings="indicatorSelectedSetting"
+                             translation-texts="selectorText"
+                             events="indicatorSelectedEvents">
+                        </div>
+                    </div>
+                </div>
+                <div id="flowBar" style=" width: 99.5%;"></div>
+                <div class="tab-record">
+                    <div id="auto_data_statistics" ui-grid="FAGridOption" class="statistics-grid"
+                         ui-grid-pinning
+                         ui-grid-pagination
+                         ui-grid-exporter
+                         ui-grid-resize-columns
+                         ui-grid-auto-resize>
+                    </div>
+                </div>
+                <!--<div class="tablePager">-->
+                <!--<span>每行页数:</span>-->
+                <!--<div class="dropdown open">-->
+                <!--<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                <!--10-->
+                <!--</button>-->
+                <!--<div class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+                <!--<a class="dropdown-item" href="#">10</a>-->
+                <!--<a class="dropdown-item" href="#">15</a>-->
+                <!--<a class="dropdown-item" href="#">20</a>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<button id="pageToFir"  class="btn btn-outline-info" ><span><<</span></button>-->
+                <!--<button id="pageToPre"  class="btn btn-outline-info" ><span><</span></button>-->
+                <!--<input id="pageName" value="1/10" />-->
+                <!--<button id="pageToNex"  class="btn btn-outline-info" ng-click="pageTurning(1,'auto_data_statistics')"><span>></span></button>-->
+                <!--<button id="pageToLast" class="btn btn-outline-info" ><span>>></span></button>-->
+                <!--<button class="btn btn-small btn-primary">导出</button>-->
+                <!--</div>-->
+            </div>
+        </div>
+
+
+        <br/>
+
+        <!-- Button trigger modal -->
+        <button type="button" style="display: none" id="compareDialog" class="btn btn-primary btn-lg"
+                data-toggle="modal" data-target="#myModal">
+            Launch demo modal
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1">
+            <div class="modal-dialog indicator-detail-view">
+                <div class="modal-content">
+                    <div class="modal-header title">
+                        <span>指标趋势&nbsp:&nbsp</span>
+                        <div class="query-item-panel" style="margin-right: 15px;">
+                            <div ng-dropdown-multiselect
+                                 options="singleIndicatorOptions"
+                                 selected-model="singleIndicatorModel"
+                                 extra-settings="singleIndicatorSetting"
+                                 translation-texts="selectorText"
+                                 events="singleIndicatorEvents">
+                            </div>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-times" style="float:right;"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <div id="samePeriodChart"
+                                 class="network-indicator-detail-chart">1
+                            </div>
+                            <div id="chainPeriodChart" style="margin-top: 15px" class="network-indicator-detail-chart">
+                                2
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

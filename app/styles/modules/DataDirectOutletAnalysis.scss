@@ -1,0 +1,332 @@
+$common-space: 5px;
+#dataDirectOutletAnalysisModule {
+    min-width: 1005px;
+    padding: 3px 20px;
+    /**布局*/
+    .device-indicator-query-panel {
+        background-color: white;
+        padding-top: 6px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        margin-top: 2px;
+        .head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 30px;
+            border-bottom: 2px solid $BLUE_POSITIVE;
+            padding: 0 15px 0 0;
+            .title {
+                display: flex;
+                align-items: center;
+                height: 30px;
+                .text {
+                    display: flex;
+                    align-items: center;
+                    height: 30px;
+                    color: white;
+                    padding: 0 20px;
+                    background-color: $BLUE_POSITIVE;
+                }
+                .right-triangle {
+                    width: 30px;
+                    height: 30px;
+                    display: inline-block;
+                    background: url("../../assets/images/common/right_triangle.png") no-repeat right center;
+                    background-size: auto 30px;
+                }
+            }
+            .select-zone {
+                display: flex;
+                height: 30px;
+                .prompt {
+                    line-height: 30px;
+                    font-size: 15px;
+                    margin: 0 5px;
+                }
+                .template-list {
+                    cursor: pointer;
+                    white-space: nowrap;
+                    .dropdown-button {
+                        line-height: 30px;
+                    }
+                    .dropdown-menu {
+                        max-width: 300px;
+                        max-height: 400px;
+                        overflow: auto;
+                        .dropdown-item-i {
+                            display: flex;
+                            align-items: center;
+                            height: 30px;
+                            cursor: pointer;
+                            &:hover {
+                                background-color: #F0F0FF;
+                            }
+                            .delete-btn {
+                                margin: 0 10px 0 15px;
+                                color: #999999;
+                            }
+                            .template-name {
+                                margin: 0 15px 0 0;
+                                max-width: 500px;
+                                flex: auto;
+                                height: 100%;
+                                display: flex;
+                                align-items: center;
+                            }
+                        }
+                        .dropdown-item-i-even {
+                            background-color: #F7F7FF;
+                            &:hover {
+                                background-color: #F0F0FF;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .query-panel-body {
+            .container{
+                padding:10px 15px 0px 28px;
+            }
+            .row{
+                margin: 10px 0px;
+            }
+            .query-main-panel {
+                padding-top: 10px;
+                margin: 0 10px;
+                font-family: "Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+                .query-time-panel {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    padding:0px 0px 10px 0px;
+                    span {
+                        font-weight: bold;
+                    }
+                }
+                .query-item-panel {
+                    display: flex;
+                    padding:0px 0px 10px 0px;
+                    align-items: center;
+                    span {
+                        font-weight: bold;
+                    }
+                }
+             }
+            .button-panel {
+                display: flex;
+                padding: 10px 0 5px 0;
+                button:focus {
+                    box-shadow: none;
+                }
+            }
+        }
+        @media screen and (min-width: 1200px) {
+            .col-lg-3,.col-lg-4 {
+                max-width: 20%;
+            }
+            .col-lg-6,.col-lg-8 {
+                max-width:40%;
+            }
+            .container {
+                width: 100%;
+            }
+        }
+        @media screen and (max-width: 1005px){
+            .container{
+                width: 950px;
+                padding:10px 15px 0px 70px !important;
+            }
+            .col-lg-4 {
+                max-width: 280px;
+            }
+            .col-lg-8 {
+                max-width: 580px;
+            }
+        }
+        @media screen and (max-width: 1024px) and (min-width: 1005px){
+            .container {
+                padding:10px 15px 0px 70px !important;
+            }
+        }
+        .footer {
+            display: flex;
+            justify-content: center;
+            border-top: 2px solid $BLUE_POSITIVE;
+            .collapse-btn {
+                width: 120px;
+                height: 11px;
+                padding: .1rem .5rem;
+                background-color: $BLUE_POSITIVE;
+                border-color: $BLUE_POSITIVE;
+                border-radius: 0 0 2px 2px;
+                i {
+                    position: relative;
+                    font-size: 1.7em;
+                }
+                .up {
+                    top: -0.1rem;
+                }
+                .down {
+                    top: -0.75rem;
+                }
+            }
+        }
+    }
+    .device-indicator-display-panel {
+        width: 100%;
+        //height: 100%;
+        height: calc(90vh - 80px);
+        min-height: 400px;
+        display: flex;
+        //flex-direction: row;
+        background-color: white;
+        padding-top: 7px;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        position: relative;
+        .left-side,
+        .right-side {
+            display: flex; // border: 1px solid black;
+            flex-direction: column;
+            border-radius: 6px;
+            //background: #45ffab;
+            padding: 0 0 2px 0;
+            .panel-content {
+                height: 100%; //calc(100% - 32.5px);
+                width: 100%;
+                position: relative;
+            }
+        }
+        .left-side {
+            width: 45%; //calc(#{$panel-total-width} * 0.3);
+            margin: 0 calc(#{$common-space} / 2) 0 calc(#{$common-space} / 2);
+        }
+        .right-side {
+            width: 55%; //calc(#{$panel-total-width} * 0.3);
+            margin: 0 calc(#{$common-space} / 2) 0 calc(#{$common-space} / 2);
+            display: flex; // border: 1px solid black;
+            flex-direction: column;
+            position: relative;
+            .chart-setting-panel{
+                //display: flex;
+                //justify-content: flex-end;
+                position: absolute;
+                z-index: 1;
+                right: 1%;
+                top: -1.1rem;
+                min-width: 210px;
+            }
+            .query-item-panel {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                span{
+                    font-weight:bold;
+                    font-size: 13px;
+                }
+            }
+
+        }
+    }
+
+    /**同比环比折线图*/
+    .modal-content {
+        margin-top: 1.5rem;
+    }
+    .indicator-detail-view {
+        width: 932px;
+        height: 800px;
+        max-width: 932px;
+        margin: 0.8% auto;
+        .network-indicator-detail-chart {
+            width: 900px;
+            height: 350px;
+            margin-top: -1.5rem;
+        }
+        .title {
+            border: 0;
+            padding: 5px;
+            justify-content: flex-end;
+            button {
+                height: 25px;
+                padding: 2px 12px;
+            }
+        }
+    }
+    /**数据表格*/
+    .statistics-grid {
+        width: 99.7%;
+        height: 100%;
+        padding: 0;
+    }
+    .tab-record {
+        padding: 5px;
+        //margin-left: 800px;
+        width: 99.7%;
+        height: 100%;
+        .form-group-padding {
+            padding-left: 10px;
+            .row-padding {
+                button {
+                    float: right
+                }
+            }
+        }
+        .table-row {
+            width: 50.5%;
+        }
+        .record-list-date {
+            margin-left: 20px;
+        }
+    }
+
+    /**下拉查询组件=============*/
+    .start-time {
+        width: 140px;
+        padding: 0.5rem 0.5rem;
+    }
+    .end-time {
+        width: 140px;
+        padding: 0.5rem 0.5rem;
+    }
+    .select-width-190 {
+        width: 190px;
+    }
+    .select-width-170 {
+        width: 170px;
+    }
+    .select-width-150 {
+        width: 150px;
+    }
+    .select-width-140 {
+        width: 140px;
+    }
+    .select-width-130 {
+        width: 130px;
+    }
+    .select-width-120 {
+        width: 120px;
+    }
+    /**======================*/
+
+    /**表格阈值背景色=============*/
+    .waringLevel1{
+        background-color:red;
+        span{
+            color:#ffffff;
+        }
+    }
+    .waringLevel2{
+        background-color:orange;
+        span{
+            color:#ffffff;
+        }
+    }
+    .waringLevel3{
+        background-color:yellow;
+    }
+    /**======================*/
+}
+

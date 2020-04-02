@@ -1,0 +1,267 @@
+$common-space: 5px;
+#dataDirectCityAnalysisModule {
+    min-width: 1220px;
+    /**布局*/
+    .device-indicator-query-panel {
+        background-color: white;
+        padding-top: 15px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        .head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 30px;
+            border-bottom: 2px solid $BLUE_POSITIVE;
+            padding: 0 15px 0 0;
+            .title {
+                display: flex;
+                align-items: center;
+                height: 30px;
+                .text {
+                    display: flex;
+                    align-items: center;
+                    height: 30px;
+                    color: white;
+                    padding: 0 20px;
+                    background-color: $BLUE_POSITIVE;
+                }
+                .right-triangle {
+                    width: 30px;
+                    height: 30px;
+                    display: inline-block;
+                    background: url("../../assets/images/common/right_triangle.png") no-repeat right center;
+                    background-size: auto 30px;
+                }
+            }
+            .select-zone {
+                display: flex;
+                height: 30px;
+                .prompt {
+                    line-height: 30px;
+                    font-size: 15px;
+                    margin: 0 5px;
+                }
+                .template-list {
+                    cursor: pointer;
+                    white-space: nowrap;
+                    .dropdown-button {
+                        line-height: 30px;
+                    }
+                    .dropdown-menu {
+                        max-width: 300px;
+                        max-height: 400px;
+                        overflow: auto;
+                        .dropdown-item-i {
+                            display: flex;
+                            align-items: center;
+                            height: 30px;
+                            cursor: pointer;
+                            &:hover {
+                                background-color: #F0F0FF;
+                            }
+                            .delete-btn {
+                                margin: 0 10px 0 15px;
+                                color: #999999;
+                            }
+                            .template-name {
+                                margin: 0 15px 0 0;
+                                max-width: 500px;
+                                flex: auto;
+                                height: 100%;
+                                display: flex;
+                                align-items: center;
+                            }
+                        }
+                        .dropdown-item-i-even {
+                            background-color: #F7F7FF;
+                            &:hover {
+                                background-color: #F0F0FF;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .query-panel-body {
+            .query-main-panel {
+                padding: 10px;
+                display: flex;
+                justify-content: space-around;
+                .query-item-group {
+                    display: flex;
+                    padding: 10px;
+                    width:255px;
+                    flex-direction: column;
+                    .query-item-panel {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 10px;
+                        span{
+                            font-weight:bold;
+                        }
+                    }
+                }
+            }
+            .button-panel {
+                display: flex;
+                justify-content: space-around;
+                padding: 10px 0 5px 0;
+                button:focus {
+                    box-shadow: none;
+                }
+            }
+        }
+        .footer {
+            display: flex;
+            justify-content: center;
+            border-top: 2px solid $BLUE_POSITIVE;
+            .collapse-btn {
+                width: 120px;
+                height: 11px;
+                padding: .1rem .5rem;
+                background-color: $BLUE_POSITIVE;
+                border-color: $BLUE_POSITIVE;
+                border-radius: 0 0 2px 2px;
+                i {
+                    position: relative;
+                    top: -3px;
+                }
+            }
+        }
+    }
+    .device-indicator-display-panel {
+        width: 100%;
+        //height: 100%;
+        height: calc(90vh - 90px);
+        display: flex;
+        //flex-direction: row;
+        background-color: white;
+        padding-top: 7px;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        position: relative;
+        .left-side,
+        .right-side {
+            display: flex; // border: 1px solid black;
+            flex-direction: column;
+            border-radius: 6px;
+            //background: #45ffab;
+            padding: 0 0 2px 0;
+            .panel-content {
+                height: 100%; //calc(100% - 32.5px);
+                width: 100%;
+                position: relative;
+            }
+        }
+        .left-side {
+            width: 45%; //calc(#{$panel-total-width} * 0.3);
+            margin: 0 calc(#{$common-space} / 2) 0 calc(#{$common-space} / 2);
+        }
+        .right-side {
+            width: 55%; //calc(#{$panel-total-width} * 0.3);
+            margin: 0 calc(#{$common-space} / 2) 0 calc(#{$common-space} / 2);
+            display: flex; // border: 1px solid black;
+            flex-direction: column;
+        }
+    }
+
+    /**同比环比折线图*/
+    .indicator-detail-view {
+        width: 932px;
+        height: 800px;
+        max-width: 932px;
+        margin: 0.8% auto;
+        .network-indicator-detail-chart {
+            width: 900px;
+            height: 350px;
+            margin-top: -1.5rem;
+        }
+        .title{
+            border: 0;
+            padding: 5px;
+            justify-content:flex-end;
+            button{
+                height: 25px;
+                padding: 2px 12px;
+            }
+        }
+    }
+    /**数据表格*/
+    .statistics-grid{
+        width: 99.7%;
+        height: 100%;
+        padding: 0;
+    }
+    .tab-record {
+        padding: 5px;
+        //margin-left: 800px;
+        width: 99.7%;
+        height: 100%;
+        .form-group-padding {
+            padding-left: 10px;
+            .row-padding{
+                button{
+                    float: right
+                }
+            }
+        }
+        .table-row {
+            width: 50.5%;
+        }
+        .record-list-date{
+            margin-left: 20px;
+        }
+    }
+    /**换页组件*/
+    .tablePager{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0.5rem;
+        //border:1px solid red;
+        button{
+            margin: 0 5px 0 5px;
+            line-height: 10px;
+            height: 25px;
+            span{
+                color: black;
+            }
+        }
+        #pageName{
+            border:1px solid lightskyblue;
+            border-radius: 3px;
+            padding: 0 3px;
+            line-height: 23px;
+            height: 25px;
+            width: 38px;
+            text-align: center;
+        }
+        #pageToFir:hover{span{color: #ffffff;}}
+        #pageToPre:hover{span{color: #ffffff;}}
+        #pageToNex:hover{span{color: #ffffff;}}
+        #pageToLast:hover{span{color: #ffffff;}}
+    }
+    /**下拉查询组件=============*/
+    .start-time{
+        width:140px;
+    }
+    .end-time{
+        width: 140px;
+    }
+    .select-width-140{
+        width:140px;
+    }
+    .select-width-120{
+        width:120px;
+    }
+    /**======================*/
+
+    #applications{
+        ul{
+            margin-left: -7.5rem;
+        }
+    }
+}
+

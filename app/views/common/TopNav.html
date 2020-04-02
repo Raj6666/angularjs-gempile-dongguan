@@ -1,0 +1,65 @@
+<div id="topNav">
+    <div class="top-nav">
+        <div>
+            <ul class="nav-left">
+                <li class="logo">
+                    <a class="flex-center">
+                        <img src="../../assets/images/nav/icon_nav_logo_china_mobile.png">
+                        <!--<span class="flex-center icon-font">首页</span>-->
+                    </a>
+                </li>
+                <li class="nav-item" ng-mouseenter="$ctrl.menuToggle('#flowMonitoringAnalysisNav','in')"
+                    ng-mouseleave="$ctrl.menuToggle('#flowMonitoringAnalysisNav','out')">
+                    <a class="flex-center"><span class="flex-center">流量监控</span></a>
+                    <ul id="flowMonitoringAnalysisNav" class="nav-2rd-menu">
+                        <li><a class="flex-center" ui-sref="flowMonitoring">链路流量监控</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item" ng-mouseenter="$ctrl.menuToggle('#softwareAnalysisNav','in')"
+                    ng-mouseleave="$ctrl.menuToggle('#softwareAnalysisNav','out')">
+                    <a class="flex-center"><span class="flex-center">指标分析</span></a>
+                    <ul id="softwareAnalysisNav" class="nav-2rd-menu">
+                        <li><a class="flex-center" ui-sref="multiDimIndicators">多维度指标查询</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item" ng-mouseenter="$ctrl.menuToggle('#dataDirectNav','in')"
+                    ng-mouseleave="$ctrl.menuToggle('#dataDirectNav','out')">
+                    <a class="flex-center"><span class="flex-center">流向分析</span></a>
+                    <ul id="dataDirectNav" class="nav-2rd-menu">
+                        <li><a ui-sref="dataDirectProvinceAnalysis" class="flex-center">省份流向</a></li>
+                        <li><a ui-sref="dataDirectOutletAnalysis" class="flex-center">运营商流向</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item" ng-mouseenter="$ctrl.menuToggle('#userAnalysisNav','in')"
+                    ng-mouseleave="$ctrl.menuToggle('#userAnalysisNav','out')">
+                    <a class="flex-center"><span class="flex-center">用户分析</span></a>
+                    <ul id="userAnalysisNav" class="nav-2rd-menu">
+                        <li><a ui-sref="dialingAnalysis" class="flex-center">拨号分析</a></li>
+                        <li><a ui-sref="dialingErrorAnalysis" class="flex-center">拨号故障分析</a></li>
+                        <li><a ui-sref="userKeyIndicatorAnalysis" class="flex-center">用户指标分析</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item" ng-mouseenter="$ctrl.menuToggle('#monitoringAlertNav','in')"
+                    ng-mouseleave="$ctrl.menuToggle('#monitoringAlertNav','out')">
+                    <a class="flex-center"><span class="flex-center">监控告警</span></a>
+                    <ul id="monitoringAlertNav" class="nav-2rd-menu">
+                        <li><a ui-sref="autoAlert" class="flex-center">主动告警</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="right-btn-list">
+            <span class="flex-center" style="width: 50px;color: whitesmoke;" ng-bind="userName"></span>
+            <div class="nav-icon">
+                <a class="flex-center" ng-click="$ctrl.logout()">
+                    <i class="fa fa-power-off fa-lg"></i>
+                </a>
+            </div>
+            <div class="nav-icon">
+                <a class="flex-center" ng-click="$ctrl.goGarnet()" target="_blank">
+                    <i class="fa fa-cog fa-lg"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

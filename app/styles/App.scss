@@ -1,0 +1,35 @@
+// font-awesome
+@import "../../node_modules/font-awesome/scss/font-awesome.scss";
+// bootstrap
+@import "../lib/bootstrap/v4.0/bootstrap.min.css";
+// flatpickr
+@import "../../node_modules/flatpickr/dist/flatpickr.min.css";
+// ui-grid
+@import "../../node_modules/angular-ui-grid/ui-grid.min.css";
+// SweetAlert2
+@import "../../node_modules/sweetalert2/dist/sweetalert2.min.css";
+/** Common Styles */
+@import "common/normalize.css";
+@import "common/variables.scss";
+@import "common/main";
+/** Custom plugins Styles */
+@import "custom-plugin/Loading";
+@import "custom-plugin/ShakeWarning";
+@import "custom-plugin/ui-grid-customizer.scss";
+//angular-dropdown-multiselect
+@import "custom-plugin/angularjs-dropdown-multiselect.scss";
+/** Components Styles */
+@import "components/TopNav";
+/** Module Styles */
+@import "modules/Login";
+@import "modules/HomPage";
+@import "modules/MultiDimIndicatorAnalysis";
+@import "modules/DataDirectCityAnalysis";
+@import "modules/DataDirectProvinceAnalysis";
+@import "modules/DataDirectOutletAnalysis";
+@import "modules/DialingAnalysis";
+@import "modules/DialingErrorAnalysis";
+@import "modules/UserKeyIndicatorAnalysis";
+@import "modules/AutoAlert";
+@import "modules/FlowMonitoring";
+@import "common.css";

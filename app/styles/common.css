@@ -1,0 +1,469 @@
+.monitoring_input {
+    border: 1px solid #2BBCFF;
+    background: #fff;
+    border-radius: 2px;
+    padding: 0 20px;
+    height: 25px;
+    color: #1BCFE9;
+}
+
+.color_settings {
+    margin: 2px 8px;
+    padding: 3px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.color_settings ins {
+    width: 20px;
+    height: 20px;
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+.shade {
+    z-index: 9998;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: #000;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    display: none;
+}
+
+.TC, .monitoring_tc {
+    background: #eef4f7;
+    position: absolute;
+    top: calc((100% - 598px)/2);
+    left: calc((100% - 1296px)/2);
+    z-index: 99999;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 2px 5px #c3c3c3;
+}
+
+/*.monitoring_tc {*/
+    /*top: 50%;*/
+    /*left: 50%;*/
+/*}*/
+
+.XTC_title {
+    background: #545454;
+    font-size: 16px;
+    color: #fff;
+    padding: 10px 20px;;
+    border-radius: 10px 10px 0 0;
+    line-height: 15px;
+}
+
+.Ncreate_divselect {
+    font-size: 13px;
+    margin-left: 5px;
+    width: 130px;
+    background: #fff url(../assets/images/autoAlert/icon_down_arrowa.png) no-repeat right;
+    border: 1px solid #c0bfbf;
+    border-radius: 2px;
+}
+
+.Ncreate_divinput {
+    font-size: 13px;
+    margin-left: 5px;
+    width: 140px;
+    border: 1px solid #c0bfbf;
+    padding-left: 5px;
+    border-radius: 2px;
+}
+
+.chooseradio {
+    float: left !important;
+    padding-top: 3px;
+    padding-right: 10px !important;
+    cursor: pointer;
+}
+
+.Ttypetext {
+    margin-left: 20px !important;
+    height: 21px;
+    width: 290px !important;
+    color: #6d6d6d !important;
+}
+
+.recordupdate_main {
+    width: 735px;
+}
+
+#Nsubmitdiv1 {
+    width: 440px;
+    height: 360px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.Nnclose {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.Ncreate {
+    padding: 10px;
+    border-bottom: 3px solid #2BBCFF;
+    margin-bottom: 10px;
+}
+
+.Ncreate_div {
+    border-bottom: 1px dashed #c1c1c1;
+    line-height: 30px;
+    padding: 10px 0;
+}
+
+.Ncreate_div2 {
+    border-bottom: 1px dashed #199ED8;
+}
+
+.Ncreate_div span {
+    float: left;
+}
+
+.Ncreate_div .Nddiv1, .PpaddingL80 {
+    padding-left: 80px;
+}
+
+.Ncreate_div .Nddiv1 ul, .Nddiv1_divR {
+    padding-right: 30px;
+}
+
+.Ncreate_div .Nddiv1 .ulselect {
+    height: 30px;
+    overflow: hidden;
+}
+
+.Ncreate_div .Nddiv1 li {
+    float: left;
+    padding-right: 15px;
+    min-width: 105px;
+}
+
+.Ncreate_div .Nddiv1 li img, .Ncreate_div .Nddiv1 .Ntime img {
+    float: left;
+    padding-top: 7px;
+    padding-right: 5px;
+}
+
+.Ncreate_div .Nddiv1 .Ntime {
+    padding-right: 20px;
+}
+
+.Ncreate_div .Nddiv1 .Ntime img {
+    float: left;
+    padding-top: 7px;
+    padding-right: 5px;
+}
+
+.Ncreate_div .Ntimeblock input, .common_input {
+    width: 58px;
+    border-radius: 2px;
+    border: 1px solid #C2C1C1;
+    padding-left: 5px;
+}
+
+.Ncreate_div .Ntimeblock input {
+    width: 58px;
+    border-radius: 2px;
+    border: 1px solid #C2C1C1;
+    padding-left: 5px;
+}
+
+.Ncreate_div .Ntimet {
+    width: auto;
+    padding-left: 20px;
+}
+
+.Ncreate_div .Ntimet img {
+    float: left;
+    padding-top: 8px;
+    margin-right: 5px;
+}
+
+.Ncreate_div .Ntimet2 {
+    width: auto;
+    padding-left: 70px;
+}
+
+.Ncreate_div .Ntimet2 span {
+    width: 30px;
+    text-align: center;
+    display: inline-block;
+}
+
+.Ncreate_div .more, .more {
+    float: right;
+    line-height: 15px;
+    border: 1px solid #2BBCFF;
+    color: #2BBCFF;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-top: 3px;
+    background: #fff;
+}
+
+.Ncreate_div .Nnumb {
+    float: none;
+    width: auto;
+    color: #2BBCFF;
+    padding: 0 3px;
+}
+
+.Ncreate_div .Ntext {
+    float: none;
+    width: auto;
+}
+
+.Ncreate_div .clearr, .clearr {
+    float: right;
+    line-height: 15px;
+    border: 1px solid #FB5D51;
+    color: #FB5D51;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-top: 3px;
+    background: #fff;
+}
+
+.clearr:hover, .Nbutton1:hover {
+    background: #FB5D51;
+    color: #fff;
+    cursor: pointer;
+}
+
+.Ncreate_div .Nddiv {
+    width: 297px !important;
+}
+
+.Ncreate_div .Nddiv2 {
+    float: left;
+    width: 247px;
+    margin-right: 30px;
+}
+
+.Ncreate_div .Nddiv2 p {
+    line-height: 26px;
+}
+
+.Ncreate_div .Nddiv2 .p1 {
+    height: 26px;
+    padding-bottom: 18px;
+}
+
+.Ncreate_div .Nddiv2 .p1 input {
+    margin-left: 30px;
+}
+
+.Ncreate_div .Nddiv2 .span1 {
+    width: 70px;
+    text-align: right;
+    color: #7d7c7c;
+    padding-bottom: 18px;
+}
+
+.Ncreate_div .Nddiv2 .span2 {
+    width: 70px;
+    text-align: right;
+}
+
+.Ncreate_div .Nddiv2 .span3 {
+    height: 26px;
+    padding-bottom: 19px;
+}
+
+.Ncreate_div .Nddiv2 .Npp1 {
+    float: left;
+    width: 180px;
+    padding: 0 5px;
+    background: url("../assets/images/autoAlert/searchK_bg.png") no-repeat bottom;
+    background-size: 100% 6px;
+    line-height: 25px;
+    margin-right: 5px;
+    color: #6d6d6d;
+}
+
+.Ncreate_div .Nddiv2 .Nkuang {
+    height: 250px;
+    overflow: auto;
+    white-space: nowrap;
+    border: 1px solid #BFBFBF;
+    padding: 3px 8px 3px 0;
+    margin-top: 10px;
+    background: #fff;
+}
+
+.Ncreate_div .Nddiv2 .Nkuang ul {
+    padding-left: 17px;
+}
+
+.Ncreate_div .Nddiv2 .Nkuang ul {
+    padding-left: 5px;
+}
+
+.Ncreate_div .Nddiv2 .Nkuang .Nuul1 {
+    margin-left: 5px;
+}
+
+.Ncreate_div .Nddiv2 .Nkuang img {
+    float: left;
+    padding-top: 9px;
+    padding-right: 5px;
+    cursor: pointer;
+}
+
+.Ncreate_div .Nddiv2 .Nkuang .chooseradio {
+    padding: 4px 5px 0 10px !important;
+}
+
+.Ncreate_div .Nddiv2 .Nkuang .Nshow {
+    padding-top: 11px;
+}
+
+.Ncreate_div .Nddiv2 .Nkuang .NshowTop {
+    padding-top: 11px;
+}
+
+.Nsubmitdivbutton {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.Nsubmitdivbutton2 {
+    margin-right: 35px;
+    margin-left: 95px;
+    cursor: pointer;
+}
+
+.popup_window {
+    z-index: 99;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 1365px;
+    height: 100%;
+    min-height: 630px;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    vertical-align: text-top;
+    background-image: url("../assets/images/autoAlert/glyphicons-halflings.png");
+    background-position: 14px 14px;
+    background-repeat: no-repeat;
+    margin-top: 1px;
+}
+
+/*时间段*/
+.timequantum {
+    height: 16px;
+    position: relative;
+}
+
+.Wdate {
+    border-radius: 2px;
+}
+
+.Wwidth120 {
+    width: 120px !important;
+}
+
+.HheightA {
+    height: auto !important;
+}
+
+.Hheight19 {
+    height: 19px;
+}
+
+.Hheight21 {
+    height: 21px !important;
+}
+
+.Llineheight25 {
+    line-height: 25px;
+}
+
+.Ppadding0 {
+    padding: 0 !important;
+}
+
+.Ppadding10t {
+    padding: 10px;
+}
+
+.Ppadding10 {
+    padding: 10px 0;
+}
+
+.PpaddingT10 {
+    padding-top: 10px;
+}
+
+.PpaddingL10 {
+    padding-left: 10px !important;
+}
+
+.PpaddingR0 {
+    padding-right: 0 !important;
+}
+
+.PpaddingB20 {
+    padding-bottom: 20px;
+}
+
+.DdisplayIB {
+    display: inline-block;
+}
+
+.Mmargin0 {
+    margin: 0 !important;
+}
+
+.MmarginL5 {
+    margin-left: 5px !important;
+}
+
+.MmarginR0 {
+    margin-right: 0 !important;
+}
+
+.MmarginR70 {
+    margin-right: 70px;
+}
+
+.MmarginR5 {
+    margin-right: 5px;
+}
+
+.FfloatL {
+    float: left !important;
+}
+
+.FfloatR {
+    float: right !important;
+}
+
+.Cclearb {
+    clear: both !important;
+}
+
+.Ttextalign {
+    text-align: center;
+}

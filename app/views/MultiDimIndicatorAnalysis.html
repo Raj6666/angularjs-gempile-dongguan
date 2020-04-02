@@ -1,0 +1,204 @@
+<div class="content" id="multiDimIndicatorAnalysisModule">
+    <div>
+        <i class="fa fa-map-marker"></i>
+        <span>指标分析>多维度指标查询</span>
+    </div>
+    <div class="device-indicator-query-panel">
+        <div class="head">
+            <div class="title">
+                <div class="text"><span>新建查询</span></div>
+                <div class="right-triangle"></div>
+            </div>
+        </div>
+        <div id="query-panel-body" class="collapse query-panel-body show">
+            <div class="query-main-panel container">
+                <div class="row">
+                    <div class="query-item-panel col-lg-3 ">
+                        <span>选择模板&nbsp;&thinsp;：</span>
+                        <div ng-dropdown-multiselect
+                             options="templateOptions"
+                             selected-model="template"
+                             extra-settings="templateSetting"
+                             translation-texts="selectorTemplateDelete"
+                             events="templateEvents"
+                        >
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-3 ">
+                        <span>用户类型&nbsp;&thinsp;：</span>
+                        <div ng-dropdown-multiselect
+                             options="userTypesOptions"
+                             selected-model="userType"
+                             translation-texts="selectorText"
+                             events="userTypeEvent"
+                             extra-settings="userTypeSetting">
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4 ">
+                        <span>维度&nbsp;&thinsp;：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <div ng-dropdown-multiselect
+                             options="dimensionsOptions"
+                             selected-model="dimensionsModel"
+                             translation-texts="selectorText"
+                             extra-settings="dimensionsSetting"
+                             events="dimensionsEvents">
+                        </div>
+                    </div>
+                    <div ng-show="dimensionsModel[0].parameter==='app'" class="query-item-panel col-lg-3">
+                        <span>业务大类<span class="red-star">*</span>：</span>
+                        <div ng-dropdown-multiselect
+                             options="appOptions.app"
+                             selected-model="appModel.app"
+                             translation-texts="selectorText"
+                             extra-settings="appSetting.app"
+                             is-warning="appIsWarning.app"
+                             events="appEvents.app"
+                        >
+                        </div>
+                    </div>
+                    <div ng-show="dimensionsModel[0].parameter==='device'" class="query-item-panel col-lg-3">
+                        <span>设备类型<span class="red-star">*</span>：</span>
+                        <div ng-dropdown-multiselect
+                             options="appOptions.device"
+                             selected-model="appModel.device"
+                             translation-texts="selectorText"
+                             extra-settings="appSetting.device"
+                             is-warning="appIsWarning.device"
+                             events="appEvents.device"
+                        >
+                        </div>
+                    </div>
+                    <div ng-show="dimensionsModel[0].parameter==='icp'" class="query-item-panel col-lg-3">
+                        <span>网站归属<span class="red-star">*</span>：</span>
+                        <div ng-dropdown-multiselect
+                             options="appOptions.icp"
+                             selected-model="appModel.icp"
+                             translation-texts="selectorText"
+                             extra-settings="appSetting.icp"
+                             search-options="appSearchOptions"
+                             is-warning="appIsWarning.icp"
+                             events="appEvents.icp"
+                        >
+                        </div>
+                    </div>
+                    <div ng-show="dimensionsModel[0].parameter==='device'" class="query-item-panel col-lg-3">
+                        <span class="span-font-weight">设备名称<span class="red-star">*</span>：</span>
+                        <div ng-dropdown-multiselect
+                             options="subAppOptions.device"
+                             selected-model="subAppModel.device"
+                             extra-settings="subAppSetting.device"
+                             translation-texts="selectorText"
+                             search-options="subAppSearchOptions.device"
+                             is-warning="subAppIsWarning.device"
+                             events="subAppEvents.device">
+                        </div>
+                    </div>
+                    <div ng-show="dimensionsModel[0].parameter==='app'" class="query-item-panel col-lg-3">
+                        <span class="span-font-weight">业务小类：</span>
+                        <div ng-dropdown-multiselect
+                             options="subAppOptions.app"
+                             selected-model="subAppModel.app"
+                             extra-settings="subAppSetting.app"
+                             translation-texts="selectorText"
+                             search-options="subAppSearchOptions.app"
+                             is-warning="subAppIsWarning.app"
+                             events="subAppEvents.app">
+                        </div>
+                    </div>
+                    <div ng-show="dimensionsModel[0].parameter==='icp'" class="query-item-panel col-lg-3">
+                        <span class="span-font-weight">网站名称：</span>
+                        <div ng-dropdown-multiselect
+                             options="subAppOptions.icp"
+                             selected-model="subAppModel.icp"
+                             extra-settings="subAppSetting.icp"
+                             translation-texts="selectorText"
+                             search-options="subAppSearchOptions.websites"
+                             is-warning="subAppIsWarning.icp"
+                             events="subAppEvents.icp">subAppSearchOptions
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-4 ">
+                        <span class="span-font-weight">指标<span class="red-star">*</span>：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&thinsp;</span>
+                        <div ng-dropdown-multiselect
+                             options="indicatorOptions"
+                             selected-model="indicatorModel"
+                             extra-settings="indicatorSetting"
+                             translation-texts="selectorText"
+                             is-warning="indicatorIsWarning"
+                             events="indicatorEvents">
+                        </div>
+                    </div>
+                    <div class="query-item-panel col-lg-3 ">
+                        <span>时间粒度&nbsp;&thinsp;：</span>
+                        <div ng-dropdown-multiselect
+                             options="intervalOptions"
+                             selected-model="interval"
+                             translation-texts="selectorText"
+                             extra-settings="intervalSetting"
+                             events="intervalEvents">
+                        </div>
+                    </div>
+                    <div class="query-time-panel col-lg-6">
+                        <span>时间选择<span class="red-star">*</span>：</span>
+                        <laydate capsule="upDateDate(timeSlots,isWarning)" interval="dateInterval"
+                                 time-slots="timeSlots" is-warning="isWarning"></laydate>
+                    </div>
+                    <div class="query-item-panel col-lg-3">
+                        <button type="button" class="btn btn-small btn-primary first-btn"
+                                ng-click="searchData()">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            <span>查询</span>
+                        </button>
+                        <button type="button" class="btn btn-small btn-primary clickable"
+                                ng-click="saveTemplate()">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            <span>{{templateText}}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <button class="btn btn-info btn-sm collapse-btn flex-center" type="button" ng-click="togglePanel()">
+                <!--<i class="fa fa-bars"></i>-->
+                <i ng-show="!showSearchPanel" class="fa fa-lg fa-sort-desc down"></i>
+                <i ng-show="showSearchPanel" class="fa fa-lg fa-sort-asc up"></i>
+            </button>
+        </div>
+    </div>
+    <div class="device-indicator-display-panel">
+        <div class="show-chart-group">
+            <div class="chart-setting-panel">
+                <div class="query-item-panel">
+                    <span>指标趋势：</span>
+                    <div ng-dropdown-multiselect
+                         options="indicatorSelectedOptions"
+                         selected-model="indicatorSelectedModel"
+                         extra-settings="indicatorSelectedSetting"
+                         translation-texts="selectorText"
+                         events="indicatorSelectedEvents">
+                    </div>
+                </div>
+                &nbsp&nbsp&nbsp&nbsp
+                <div ng-dropdown-multiselect
+                     options="sortOptions"
+                     selected-model="sortModel"
+                     extra-settings="sortSetting"
+                     events="sortEvents"
+                     translation-texts="selectorText"
+                >
+                </div>
+            </div>
+            <div id="deviceIndicatorChart" class="chart-show-panel"></div>
+        </div>
+        <div class="show-grid-group">
+            <div ui-grid="DIAGridOption" class="grid-class"
+                 ui-grid-pinning
+                 ui-grid-pagination
+                 ui-grid-exporter
+                 ui-grid-auto-resize
+                 ui-grid-resize-columns>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="content" id="flowMonitoringModule">
+    <div>
+        <i class="fa fa-map-marker"></i>
+        <span>流量监控>链路流量监控</span>
+    </div>
+    <div class="flow-monitoring-query-panel">
+        <div class="head">
+            <div class="title">
+                <div class="text"><span>新建查询</span></div>
+                <div class="right-triangle"></div>
+            </div>
+        </div>
+        <div id="query-panel-body" class="collapse query-panel-body show">
+            <div class="query-main-panel">
+                <div class="query-item-group">
+                    <div class="query-item-panel">
+                        <span>时间粒度：</span>
+                        <div ng-dropdown-multiselect
+                             options="queryTool.interval.options"
+                             selected-model="queryTool.interval.model"
+                             translation-texts="queryTool.selectorText"
+                             extra-settings="queryTool.interval.settings"
+                             events="queryTool.interval.events">
+                        </div>
+                    </div>
+                    <div class="query-item-panel">
+                        <span>链路状态：</span>
+                        <div ng-dropdown-multiselect
+                             options="queryTool.linkState.options"
+                             selected-model="queryTool.linkState.model"
+                             translation-texts="queryTool.selectorText"
+                             extra-settings="queryTool.linkState.settings"
+                             events="queryTool.linkState.events">
+                        </div>
+                    </div>
+                </div>
+                <div class="query-item-merge-panel">
+                    <div class="query-time-panel">
+                        <span>时间选择<span class="red-star">*</span>：</span>&nbsp;&nbsp;&nbsp;&nbsp;&thinsp;
+                        <laydate capsule="upDateDate(timeSlots,isWarning)"  interval="interval" time-slots="timeSlots" is-warning="isWarning"></laydate>
+                    </div>
+                    <div class="query-item-merge">
+                        <div class="query-item-group">
+                            <div class="query-item-panel">
+                                <span>链路名称<span class="red-star">*</span>：</span>
+                                <div ng-dropdown-multiselect
+                                     options="queryTool.linkName.options"
+                                     selected-model="queryTool.linkName.model"
+                                     translation-texts="queryTool.selectorText"
+                                     events="queryTool.linkName.events"
+                                     is-warning="queryTool.linkName.IsWarning"
+                                     extra-settings="queryTool.linkName.settings">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="query-item-group">
+                            <div class="query-item-panel">
+                                <button type="button" class="btn btn-small btn-primary"
+                                        ng-click="searchData()">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                    <span>查询</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <button class="btn btn-info btn-sm collapse-btn flex-center" type="button" ng-click="togglePanel()">
+                <!--<i class="fa fa-bars"></i>-->
+                <i ng-show="!showSearchPanel" class="fa fa-lg fa-sort-desc down"></i>
+                <i ng-show="showSearchPanel" class="fa fa-lg fa-sort-asc up"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="device-indicator-display-panel">
+        <div id="showChartGroup" class="show-chart-group">
+            <div class="chart-setting-panel">
+                <div class="query-item-panel">
+                    <span>指标名称：</span>
+                    <div ng-dropdown-multiselect
+                         options="queryTool.indicatorType.options"
+                         selected-model="queryTool.indicatorType.model"
+                         extra-settings="queryTool.indicatorType.settings"
+                         translation-texts="queryTool.selectorText"
+                         events="queryTool.indicatorType.events">
+                    </div>
+                </div>
+            </div>
+            <div id="flowMonitoringChart" class="chart-show-panel"></div>
+        </div>
+        <div class="show-grid-group">
+            <div ui-grid="FMGridOption" class="grid-class"
+                 ui-grid-pinning
+                 ui-grid-pagination
+                 ui-grid-exporter
+                 ui-grid-auto-resize
+                 ui-grid-resize-columns>
+            </div>
+        </div>
+    </div>
+</div>
