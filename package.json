@@ -18,7 +18,7 @@
         "url": "http://192.168.6.126/gemstack-core/gemstack-core-fe/repository/archive.zip?ref=0.4.8-20180725"
     },
     "devDependencies": {
-        "angular": "^1.6.2",
+        "angular": "^1.8.0",
         "angular-ui-bootstrap": "^2.5.0",
         "angular-ui-grid": "^4.0.3",
         "angular-ui-router": "^0.4.2",
